@@ -14,6 +14,7 @@
 <title>게시물 리스트</title>
 </head>
 <body>
+	<div><a href="../home/main">홈으로 돌아가기</a></div>
 	<h1>게시물 리스트</h1>
 	<ul>
 		<% 
