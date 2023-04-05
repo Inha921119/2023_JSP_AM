@@ -1,33 +1,25 @@
-<%@ page import="java.util.Map"%>
-<%@ page import="java.util.List"%>
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
 <%
-	String inputId = request.getParameter("id");
-	if (inputId == null) {
-		inputId = "1";
-	}
-	
-	int id = Integer.parseInt(inputId);
-	
-	
-	List<Map<String, Object>> articleListMap = (List<Map<String, Object>>) request.getAttribute("articleListMap");
+	Map<String, Object> articleRow = (Map) request.getAttribute("articleRow");
 %>
 
-
-<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>(<%=id %>)번 게시물</title>
+<title>게시물 상세보기</title>
 </head>
 <body>
-	<h1>(<%=id %>)번 게시물</h1>
-	<ul>
-		<li>번호 : <%= articleListMap.get(0).get("id") %></li>
-		<li>날짜 : <%= articleListMap.get(1).get("regDate") %></li>
-		<li>제목 : <%= articleListMap.get(2).get("title") %></li>
-		<li>내용 : <%= articleListMap.get(2).get("body") %></li>
-	</ul>
+	<h1><%= (int) articleRow.get("id") %>번 게시물</h1>
+	
+	<div>번호 : <%= (int) articleRow.get("id") %></div>
+	<div>날짜 : <%= (LocalDateTime) articleRow.get("regDate") %></div>
+	<div>제목 : <%= (String) articleRow.get("title") %></div>
+	<div>내용 : <%= (String) articleRow.get("body") %></div>
+	<div><a href="list">목록</a></div>
 </body>
 </html>
