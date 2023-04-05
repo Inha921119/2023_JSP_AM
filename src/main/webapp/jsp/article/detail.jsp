@@ -20,6 +20,9 @@
 	<div>날짜 : <%= (LocalDateTime) articleRow.get("regDate") %></div>
 	<div>제목 : <%= (String) articleRow.get("title") %></div>
 	<div>내용 : <%= (String) articleRow.get("body") %></div>
-	<div><a href="list">목록</a></div>
+	
+	<button><a href="doDelete?id=<%= articleRow.get("id") %>" style='color : inherit; text-decoration : none;'>삭제</a></button>
+	
+	<button><a href="list" style='color : inherit; text-decoration : none;'>목록</a></button>
 </body>
 </html>
