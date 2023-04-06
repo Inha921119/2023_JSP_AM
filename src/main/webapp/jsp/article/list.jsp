@@ -19,6 +19,8 @@
 	<div><a href="../home/main">홈으로 돌아가기</a></div>
 	<h1>게시물 리스트</h1>
 	
+	<button><a href="write" style='color : inherit; text-decoration : none;'>글쓰기</a></button>
+	
 	<table border="1" bordercolor="green">
 		<colgroup>
 			<col />
@@ -40,7 +42,6 @@
 		} 
 		%>
 	</table>
-	
 	<style type="text/css">
 		.paging > a.red {
 			color : inherit;
