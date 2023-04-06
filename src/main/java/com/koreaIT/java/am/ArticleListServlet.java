@@ -34,10 +34,9 @@ public class ArticleListServlet extends HttpServlet {
 			
 			SecSql sql = SecSql.from("SELECT * FROM article");
 			sql.append("ORDER BY id DESC");
+			sql.append("LIMIT 0, 10");
 			
 			List<Map<String, Object>> articleListMap = DBUtil.selectRows(conn, sql);
-			
-//			response.getWriter().append(articleListMap.toString());
 			
 			request.setAttribute("articleListMap", articleListMap);
 			

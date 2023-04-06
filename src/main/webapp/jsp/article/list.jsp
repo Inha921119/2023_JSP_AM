@@ -16,14 +16,28 @@
 <body>
 	<div><a href="../home/main">홈으로 돌아가기</a></div>
 	<h1>게시물 리스트</h1>
-	<ul>
-		<% 
-		for(Map<String, Object> articleMap : articleListMap) {
-		%>
-			<li><a href="detail?id=<%= articleMap.get("id") %>"><%= articleMap.get("id") %>, <%= articleMap.get("regDate") %>, <%= articleMap.get("title") %></a></li>
+	
+	<table border="1" bordercolor="green">
+		<colgroup>
+			<col />
+			<col width="200">
+		</colgroup>
+		<tr>
+			<th>번호</th>
+			<th>날짜</th>
+			<th>제목</th>
+		</tr>
+		
+		<%for(Map<String, Object> articleMap : articleListMap){ %>
+			<tr>
+				<td><%= articleMap.get("id") %></td>
+				<td><%= articleMap.get("regDate") %></td>
+				<td><a href="detail?id=<%= articleMap.get("id") %>"><%= articleMap.get("title") %></a></td>
+			</tr>
 		<% 
 		} 
 		%>
-	</ul>
+	</table>
+
 </body>
 </html>
