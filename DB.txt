@@ -31,4 +31,17 @@ updateDate = NOW(),
 title = 'test3',
 `body` = 'test3';
 
-SELECT * FROM article;
+SELECT * FROM article
+ORDER BY id DESC
+LIMIT 0, 10;
+
+SELECT COUNT(*)
+FROM article;
+
+INSERT INTO article(regDate, updateDate, title, `body`)
+SELECT NOW(), NOW(), CONCAT('제목_', RAND()), CONCAT('내용_', RAND())
+FROM article
+
+DELETE FROM article
+
+TRUNCATE article
