@@ -45,3 +45,28 @@ FROM article
 DELETE FROM article
 
 TRUNCATE article
+
+# member 테이블 생성
+CREATE TABLE `member`(
+	id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	regDate DATETIME NOT NULL,
+	updateDate DATETIME NOT NULL,
+	loginId VARCHAR(100) NOT NULL,
+	loginPw VARCHAR(100) NOT NULL,
+	`name` VARCHAR(100) NOT NULL
+);
+
+# member 테스트 데이터
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'test1',
+loginPw = 'test1',
+`name` = 'test1';
+
+DELETE FROM `member`
+
+TRUNCATE `member`
+
+SELECT * FROM `member`
+ORDER BY id DESC;

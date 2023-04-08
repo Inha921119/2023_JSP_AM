@@ -21,6 +21,9 @@
 	<h1>게시물 리스트</h1>
 	
 	<div>
+		<a href="../home/main">메인으로 돌아가기</a>
+	</div>
+	<div>
 		<a href="write">글쓰기</a>
 	</div>
 	
