@@ -8,6 +8,7 @@ CREATE TABLE article(
 	id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	regDate DATETIME NOT NULL,
 	updateDate DATETIME NOT NULL,
+	memberId INT UNSIGNED NOT NULL,
 	title VARCHAR(100) NOT NULL,
 	`body` TEXT NOT NULL
 );
@@ -16,18 +17,21 @@ CREATE TABLE article(
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
+memberId = 1,
 title = 'test1',
 `body` = 'test1';
 
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
+memberId = 2,
 title = 'test2',
 `body` = 'test2';
 
 INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
+memberId = 2,
 title = 'test3',
 `body` = 'test3';
 
@@ -63,6 +67,13 @@ updateDate = NOW(),
 loginId = 'test1',
 loginPw = 'test1',
 `name` = 'test1';
+
+INSERT INTO `member`
+SET regDate = NOW(),
+updateDate = NOW(),
+loginId = 'test2',
+loginPw = 'test2',
+`name` = 'test2';
 
 DELETE FROM `member`
 
