@@ -15,12 +15,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/article/detail")
 public class ArticleDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		
 		Connection conn = null;
 
@@ -31,13 +33,21 @@ public class ArticleDetailServlet extends HttpServlet {
 			
 			int id = Integer.parseInt(request.getParameter("id"));
 			
-			SecSql sql = SecSql.from("SELECT * FROM article");
-			sql.append("WHERE id = ?", id);
+			int loginedMemberId = -1;
+			
+			if (session.getAttribute("loginedMemberId") != null) {
+				loginedMemberId = (int) session.getAttribute("loginedMemberId");
+			}
+			
+			SecSql sql = SecSql.from("SELECT * FROM article AS a");
+			sql.append("JOIN `member` AS m");
+			sql.append("ON a.memberId = m.id");
+			sql.append("WHERE a.id = ?", id);
 			
 			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
 			
+			request.setAttribute("loginedMemberId", loginedMemberId);
 			request.setAttribute("articleRow", articleRow);
-			
 			request.getRequestDispatcher("/jsp/article/detail.jsp").forward(request, response);
 			
 		} catch (ClassNotFoundException e) {
