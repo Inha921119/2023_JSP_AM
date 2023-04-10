@@ -9,50 +9,63 @@
 <body>
 	<h1>회원가입</h1>
 	<script>
-		function check() {
-			let form = document.joinForm;
+		function joinFormSubmit(form) {
+			form.loginId.value = form.loginId.value.trim();
+			form.loginPw.value = form.loginPw.value.trim();
+			form.loginPwChk.value = form.loginPwChk.value.trim();
+			form.name.value = form.name.value.trim();
 			
-			if (form.loginId.value.trim() == "") {
+			if (form.loginId.value.length == 0) {
 				alert('아이디를 입력해주세요');
-		      	return false;
+				form.loginId.focus();
+		      	return;
 			}
-			if (form.loginPw.value.trim() == "") {
+			
+			if (form.loginPw.value.length == 0) {
 				alert('비밀번호를 입력해주세요');
-		      	return false;
+				form.loginPw.focus();
+		      	return;
 			}
-			if (form.loginPwChk.value.trim() == "") {
+			
+			if (form.loginPwChk.value.length == 0) {
 				alert('비밀번호 확인을 입력해주세요');
-		      	return false;
+				form.loginPwChk.focus();
+		      	return;
 			}
+			
+			if (form.name.value.length == 0) {
+				alert('이름을 입력해주세요');
+				form.name.focus();
+		      	return;
+			}
+			
 			if (form.loginPw.value != form.loginPwChk.value) {
 		      	alert( '비밀번호를 확인해주세요' );
-		      	return false;
+				form.loginPw.focus();
+				form.loginPw.value = null;
+				form.loginPwChk.value = null;
+		      	return;
 		    }
 			
-			if (form.name.value.trim() == "") {
-				alert('이름을 입력해주세요');
-		      	return false;
-			}
-			
-			alert('%s님 회원가입이 완료되었습니다.', loginId);
+			form.submit();
 		}	
 	</script>
 	
-	<form action="doJoin" method="POST" onsubmit="return check();" name="joinForm">
+	<form action="doJoin" method="POST" onsubmit="joinFormSubmit(this); return false;">
 		<div>
-			아이디 : <input name="loginId" type="text" placeholder="아이디를 입력해주세요">
+			아이디 : <input type="text" name="loginId" placeholder="아이디를 입력해주세요" autocomplete="off">
 		</div>
 		<div>
-			비밀번호 : <input name="loginPw" type="text" placeholder="비밀번호를 입력해주세요">
+			비밀번호 : <input type="password" name="loginPw" placeholder="비밀번호를 입력해주세요">
 		</div>
 		<div>
-			비밀번호 확인: <input name="loginPwChk" type="text" placeholder="비밀번호를 입력해주세요">
+			비밀번호 확인: <input type="password" name="loginPwChk" placeholder="비밀번호 확인을 입력해주세요">
 		<div>
-			이름 : <input name="name" type="text" placeholder="이름를 입력해주세요">
+			이름 : <input type="text" name="name" placeholder="이름를 입력해주세요" autocomplete="off">
 		</div>
 		
-		<button>완료</button>
+		<button>가입</button>
 	</form>
-		<button><a href="../home/main" style='color : inherit; text-decoration : none;'>뒤로가기</a></button>
+		<button><a href="../home/main" style='color : inherit; text-decoration : none;'>취소</a></button>
 </body>
 </html>
