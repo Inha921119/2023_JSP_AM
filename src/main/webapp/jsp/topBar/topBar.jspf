@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+	<%
+	int loginedMemberId = (int) request.getAttribute("loginedMemberId");
+	%>   
+
+	<%
+	if (loginedMemberId == -1) {
+	%>
+		<button><a href="../member/join" style='color : inherit; text-decoration : none;' >회원가입</a></button>
+		<button><a href="../member/login" style='color : inherit; text-decoration : none;' >로그인</a></button>
+	<%
+	}
+	%>
+	
+	<%
+	if (loginedMemberId != -1) {
+	%>
+		<button><a href="../member/doLogout" style='color : inherit; text-decoration : none;' >로그아웃</a></<button>
+	<%
+	}
+	%>

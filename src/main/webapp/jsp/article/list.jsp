@@ -83,5 +83,15 @@
 		}
 		%>
 	</div>
+	
+	<form action="list">
+		<select name="search-option" id="search-choose">
+			<option value="title">제목</option>
+			<option value="body">내용</option>
+			<option value="titleBody">제목+내용</option>
+		</select>
+		<input type="text" name="search-keyword" placeholder="검색어를 입력하세요">
+		<button>검색</button>
+	</form>
 </body>
 </html>

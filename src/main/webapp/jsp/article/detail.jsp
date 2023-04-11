@@ -25,7 +25,7 @@
 	
 	<button><a href="list" style='color : inherit; text-decoration : none;'>목록</a></button>
 	<%
-	if (loginedMemberId == (int) articleRow.get("memberId")) {
+	if (loginedMemberId != -1 && loginedMemberId == (int) articleRow.get("memberId")) {
 	%>
 	<button><a href="modify?id=<%= articleRow.get("id") %>" style='color : inherit; text-decoration : none;'>수정</a></button>
 	<button><a href="doDelete?id=<%= articleRow.get("id") %>" style='color : inherit; text-decoration : none;' onclick="if(confirm('삭제하시겠습니까?') == false) return false;">삭제</a></button>

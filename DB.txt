@@ -81,3 +81,16 @@ TRUNCATE `member`
 
 SELECT * FROM `member`
 ORDER BY id DESC;
+
+# article, member join
+SELECT *, M.loginId AS writerId
+	FROM article AS A
+JOIN `member` AS M
+	ON A.memberId = M.id
+ORDER BY A.id DESC;
+LIMIT 0, 10;
+
+SELECT * FROM article AS A
+JOIN `member` AS M
+ON A.memberId = M.id
+WHERE A.id = 1;

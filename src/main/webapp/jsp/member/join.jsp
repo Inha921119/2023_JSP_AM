@@ -60,6 +60,7 @@
 		</div>
 		<div>
 			비밀번호 확인: <input type="password" name="loginPwChk" placeholder="비밀번호 확인을 입력해주세요">
+		</div>
 		<div>
 			이름 : <input type="text" name="name" placeholder="이름를 입력해주세요" autocomplete="off">
 		</div>

@@ -15,6 +15,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/article/modify")
 public class ArticleModifyServlet extends HttpServlet {
@@ -23,6 +24,8 @@ public class ArticleModifyServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8;");
+		
+		HttpSession session = request.getSession();
 		
 		Connection conn = null;
 		
@@ -39,6 +42,19 @@ public class ArticleModifyServlet extends HttpServlet {
 			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
 			
 			request.setAttribute("articleRow", articleRow);
+			
+			int loginedMemberId = -1;
+			
+			if (session.getAttribute("loginedMemberId") != null) {
+				loginedMemberId = (int) session.getAttribute("loginedMemberId");
+			}
+			
+			if (loginedMemberId != (int) articleRow.get("memberId")) {
+
+				response.getWriter().append(String.format("<script>alert('권한이 없습니다.'); location.replace('../article/detail?id=%d');</script>", articleRow.get("id")));
+				
+				return;
+			}
 			
 			request.getRequestDispatcher("/jsp/article/modify.jsp").forward(request, response);
 			
