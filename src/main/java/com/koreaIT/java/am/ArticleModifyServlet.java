@@ -15,16 +15,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/article/modify")
 public class ArticleModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8;");
-		
-		HttpSession session = request.getSession();
 		
 		Connection conn = null;
 		
@@ -39,13 +37,6 @@ public class ArticleModifyServlet extends HttpServlet {
 			sql.append("WHERE id = ?", id);
 			
 			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
-			
-			if (session.getAttribute("loginedMemberId") != articleRow.get("memberId")) {
-
-				response.getWriter().append(String.format("<script>alert('권한이 없습니다.'); location.replace('../article/detail?id=%d');</script>", articleRow.get("id")));
-				
-				return;
-			}
 			
 			request.setAttribute("articleRow", articleRow);
 			

@@ -39,10 +39,11 @@ public class ArticleDetailServlet extends HttpServlet {
 				loginedMemberId = (int) session.getAttribute("loginedMemberId");
 			}
 			
-			SecSql sql = SecSql.from("SELECT * FROM article AS a");
-			sql.append("JOIN `member` AS m");
-			sql.append("ON a.memberId = m.id");
-			sql.append("WHERE a.id = ?", id);
+			SecSql sql = SecSql.from("SELECT *, M.loginId AS writerId");
+			sql.append("FROM article AS A");
+			sql.append("JOIN `member` AS M");
+			sql.append("ON A.memberId = M.id");
+			sql.append("WHERE A.id = ?", id);
 			
 			Map<String, Object> articleRow = DBUtil.selectRow(conn, sql);
 			
